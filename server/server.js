@@ -14,13 +14,14 @@ app.use(bodyParser.json());
 
 app.use(require('./routes/usuario'));
 
-mongoose.connect('mongodb://localhost:27017/cafe', (err, res) => {
-    if (err) {
-        throw err
-    }
+mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: true },
+    (err, res) => {
+        if (err) {
+            throw err
+        }
 
-    console.log('Base de Datos ONLINE!');
-});
+        console.log('Base de Datos ONLINE!');
+    });
 
 app.listen(process.env.PORT, () => {
     console.log('Escuchando puerto 8080');
